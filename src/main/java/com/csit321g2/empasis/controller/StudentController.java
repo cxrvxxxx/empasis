@@ -18,6 +18,7 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @PostMapping("/add")
+    // @ModelAttribute -> Maps all type attributes as RequestParams
     public @ResponseBody String addStudent(@ModelAttribute Student s) {
         studentRepository.save(s);
         return "Saved";

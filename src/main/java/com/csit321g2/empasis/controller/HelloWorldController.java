@@ -10,6 +10,7 @@ public class HelloWorldController {
 
     @GetMapping("/hello")
     public @ResponseBody String hello(
+            // Specify URI Parameters
             @RequestParam(name = "fname", defaultValue = "john") String fname,
             @RequestParam(name = "lname", defaultValue = "doe") String lname) {
         return "Hello, " + fname + " " + lname + "!";
