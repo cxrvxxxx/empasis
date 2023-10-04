@@ -1,56 +1,75 @@
 package com.csit321g2.empasis.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tblstudents")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "student_id")
+    private Integer sid;
 
-    private String name;
+    @Column(name = "firstname")
+    private String firstname;
 
-    private String email;
+    @Column(name = "lastname")
+    private String lastname;
 
-    public Integer getId() {
-        return id;
+    @Column(name = "gender")
+    private String gender;
+
+    public Integer getSid() {
+        return sid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", email=" + email + "]";
+        return "Student [sid=" + sid + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender
+                + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((sid == null) ? 0 : sid.hashCode());
+        result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+        result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+        result = prime * result + ((gender == null) ? 0 : gender.hashCode());
         return result;
     }
 
@@ -63,20 +82,25 @@ public class Student {
         if (getClass() != obj.getClass())
             return false;
         Student other = (Student) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (sid == null) {
+            if (other.sid != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!sid.equals(other.sid))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (firstname == null) {
+            if (other.firstname != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!firstname.equals(other.firstname))
             return false;
-        if (email == null) {
-            if (other.email != null)
+        if (lastname == null) {
+            if (other.lastname != null)
                 return false;
-        } else if (!email.equals(other.email))
+        } else if (!lastname.equals(other.lastname))
+            return false;
+        if (gender == null) {
+            if (other.gender != null)
+                return false;
+        } else if (!gender.equals(other.gender))
             return false;
         return true;
     }
