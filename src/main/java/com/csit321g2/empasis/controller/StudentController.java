@@ -1,11 +1,12 @@
 package com.csit321g2.empasis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csit321g2.empasis.model.Student;
@@ -19,13 +20,13 @@ public class StudentController {
 
     @PostMapping("/add")
     // @ModelAttribute -> Maps all type attributes as RequestParams
-    public @ResponseBody String addStudent(@ModelAttribute Student s) {
+    public ResponseEntity<Integer> addStudent(@ModelAttribute Student s) {
         studentRepository.save(s);
-        return "Saved";
+        return new ResponseEntity<Integer>(s.getSid(), HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public ResponseEntity<Iterable<Student>> getAllStudents() {
+        return new ResponseEntity<Iterable<Student>>(studentRepository.findAll(), HttpStatus.OK);
     }
 }
