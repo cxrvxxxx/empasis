@@ -1,4 +1,4 @@
-package com.csit321g2.empasis.model;
+package com.csit321g2.empasis.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tblstudents")
-public class Student {
+public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
@@ -81,7 +81,7 @@ public class Student {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Student other = (Student) obj;
+        StudentEntity other = (StudentEntity) obj;
         if (sid == null) {
             if (other.sid != null)
                 return false;
