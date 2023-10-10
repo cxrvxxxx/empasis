@@ -15,9 +15,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public boolean addStudent(StudentEntity s) {
-        studentRepository.save(s);
-        return true;
+    public StudentEntity addStudent(StudentEntity s) {
+        return studentRepository.save(s);
     }
 
     public Iterable<StudentEntity> getAllStudents() {

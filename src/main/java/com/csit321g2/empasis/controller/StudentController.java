@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +22,8 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/add")
-    public ResponseEntity<Integer> addStudent(@ModelAttribute StudentEntity s) {
-        studentService.addStudent(s);
-        return new ResponseEntity<Integer>(s.getSid(), HttpStatus.OK);
+    public ResponseEntity<StudentEntity> addStudent(@RequestBody StudentEntity s) {
+        return new ResponseEntity<StudentEntity>(studentService.addStudent(s), HttpStatus.OK);
     }
 
     @GetMapping("/all")
