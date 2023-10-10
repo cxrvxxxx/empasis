@@ -24,6 +24,16 @@ public class StudentEntity {
     @Column(name = "gender")
     private String gender;
 
+    public StudentEntity() {
+    }
+
+    public StudentEntity(Integer sid, String firstname, String lastname, String gender) {
+        this.sid = sid;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+    }
+
     public Integer getSid() {
         return sid;
     }
