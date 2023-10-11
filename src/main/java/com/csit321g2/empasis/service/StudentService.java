@@ -26,4 +26,31 @@ public class StudentService {
     public Optional<StudentEntity> getStudentById(int studentId) {
         return studentRepository.findById(studentId);
     }
+
+    public StudentEntity updateStudent(int studentId, StudentEntity updatedStudent) {
+        Optional<StudentEntity> existingStudentOptional = studentRepository.findById(studentId);
+
+        if (existingStudentOptional.isPresent()) {
+            StudentEntity existingStudent = existingStudentOptional.get();
+
+            existingStudent.setFirstname(updatedStudent.getFirstname());
+            existingStudent.setLastname(updatedStudent.getFirstname());
+            existingStudent.setGender(updatedStudent.getGender());
+
+            return studentRepository.save(existingStudent);
+        }
+
+        return null;
+    }
+
+    public boolean deleteStudent(int studentId) {
+        Optional<StudentEntity> studentOptional = studentRepository.findById(studentId);
+
+        if (studentOptional.isPresent()) {
+            studentRepository.delete(studentOptional.get());
+            return true;
+        }
+
+        return false;
+    }
 }
