@@ -27,14 +27,14 @@ public class StudentService {
         return studentRepository.findById(studentId);
     }
 
-    public StudentEntity updateStudent(int studentId, StudentEntity updatedStudent) {
-        Optional<StudentEntity> existingStudentOptional = studentRepository.findById(studentId);
+    public StudentEntity updateStudent(StudentEntity updatedStudent) {
+        Optional<StudentEntity> existingStudentOptional = studentRepository.findById(updatedStudent.getSid());
 
         if (existingStudentOptional.isPresent()) {
             StudentEntity existingStudent = existingStudentOptional.get();
 
             existingStudent.setFirstname(updatedStudent.getFirstname());
-            existingStudent.setLastname(updatedStudent.getFirstname());
+            existingStudent.setLastname(updatedStudent.getLastname());
             existingStudent.setGender(updatedStudent.getGender());
 
             return studentRepository.save(existingStudent);
